@@ -7,6 +7,10 @@ import Features from './pages/Features';
 import Pricing from './pages/Pricing';
 import Dashboard from './pages/Dashboard';
 import Contact from './pages/Contact';
+import About from './pages/About/About';
+import Blog from './pages/Blog/Blog';
+import FAQ from './pages/FAQ/FAQ';
+import Careers from './pages/Careers/Careers';
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/careers" element={<Careers />} />
             {/* Catch-all route for 404s - redirect to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
