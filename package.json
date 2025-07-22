@@ -2,6 +2,7 @@
   "name": "saas-company-app",
   "version": "1.0.0",
   "description": "A polished SaaS company React application",
+  "homepage": ".",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
