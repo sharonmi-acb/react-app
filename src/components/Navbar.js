@@ -34,6 +34,40 @@ const Navbar = () => {
             <Link to="/pricing" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Pricing
             </Link>
+            
+            {/* Dropdown for Dashboard */}
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+              >
+                Dashboard
+                <ChevronDown className="ml-1 w-4 h-4" />
+              </button>
+              {dropdownOpen && (
+                <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50">
+                  <Link to="/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Overview
+                  </Link>
+                  <Link to="/analytics" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Analytics
+                  </Link>
+                  <Link to="/users" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    User Management
+                  </Link>
+                  <Link to="/reports" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Reports
+                  </Link>
+                  <Link to="/status" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    System Status
+                  </Link>
+                  <Link to="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Settings
+                  </Link>
+                </div>
+              )}
+            </div>
+            
             <Link to="/blog" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Blog
             </Link>
@@ -79,6 +113,24 @@ const Navbar = () => {
               </Link>
               <Link to="/pricing" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
                 Pricing
+              </Link>
+              <Link to="/dashboard" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Dashboard
+              </Link>
+              <Link to="/analytics" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Analytics
+              </Link>
+              <Link to="/users" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Users
+              </Link>
+              <Link to="/reports" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Reports
+              </Link>
+              <Link to="/status" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Status
+              </Link>
+              <Link to="/settings" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Settings
               </Link>
               <Link to="/blog" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
                 Blog
