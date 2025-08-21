@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ChatWidget from './components/ChatWidget';
 import NotificationProvider from './components/ui/Notifications';
 import Home from './pages/Home';
 import Features from './pages/Features';
@@ -12,6 +13,7 @@ import About from './pages/About/About';
 import Blog from './pages/Blog/Blog';
 import FAQ from './pages/FAQ/FAQ';
 import Careers from './pages/Careers/Careers';
+import Support from './pages/Support/Support';
 import Analytics from './pages/Analytics';
 import UserManagement from './pages/UserManagement';
 import Settings from './pages/Settings';
@@ -35,6 +37,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/careers" element={<Careers />} />
+              <Route path="/support" element={<Support />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/settings" element={<Settings />} />
@@ -45,6 +48,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
+          <ChatWidget />
         </div>
       </Router>
     </NotificationProvider>

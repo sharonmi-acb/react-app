@@ -100,6 +100,72 @@ const Blog = () => {
       views: '1.9k',
       category: 'Business',
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 7,
+      title: 'Machine Learning for Business Analytics: Getting Started',
+      excerpt: 'A beginner-friendly guide to implementing machine learning in your business analytics workflow.',
+      author: 'Dr. Lisa Park',
+      date: '2024-12-28',
+      readTime: '9 min read',
+      views: '2.3k',
+      category: 'Technology',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 8,
+      title: 'Customer Success Metrics That Actually Matter',
+      excerpt: 'Learn which KPIs to track for meaningful customer success insights and business growth.',
+      author: 'Alex Thompson',
+      date: '2024-12-25',
+      readTime: '6 min read',
+      views: '1.7k',
+      category: 'Business',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 9,
+      title: 'Building Responsive Web Applications with React',
+      excerpt: 'Master the art of creating beautiful, responsive interfaces that work on any device.',
+      author: 'Emily Rodriguez',
+      date: '2024-12-22',
+      readTime: '11 min read',
+      views: '3.8k',
+      category: 'Tutorials',
+      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 10,
+      title: 'The Rise of No-Code Platforms in Enterprise',
+      excerpt: 'How no-code solutions are transforming enterprise software development and what it means for IT teams.',
+      author: 'Robert Chen',
+      date: '2024-12-20',
+      readTime: '8 min read',
+      views: '2.1k',
+      category: 'Industry Insights',
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 11,
+      title: 'Advanced Authentication Strategies for SaaS',
+      excerpt: 'Implement robust authentication systems including SSO, MFA, and OAuth for your SaaS application.',
+      author: 'Sarah Johnson',
+      date: '2024-12-18',
+      readTime: '13 min read',
+      views: '2.9k',
+      category: 'Technology',
+      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 12,
+      title: 'Scaling Your Startup: From MVP to Enterprise',
+      excerpt: 'Real-world strategies for scaling your startup infrastructure and team as you grow.',
+      author: 'David Kim',
+      date: '2024-12-15',
+      readTime: '10 min read',
+      views: '4.5k',
+      category: 'Business',
+      image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
     }
   ];
 

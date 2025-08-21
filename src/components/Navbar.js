@@ -74,6 +74,9 @@ const Navbar = () => {
             <Link to="/careers" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Careers
             </Link>
+            <Link to="/support" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+              Support
+            </Link>
             <Link to="/contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
               Contact
             </Link>
@@ -137,6 +140,9 @@ const Navbar = () => {
               </Link>
               <Link to="/careers" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
                 Careers
+              </Link>
+              <Link to="/support" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
+                Support
               </Link>
               <Link to="/contact" className="block text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium">
                 Contact
