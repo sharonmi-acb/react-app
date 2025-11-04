@@ -1,140 +1,143 @@
-import React, { useState } from 'react';
-import { 
-  Settings as SettingsIcon, 
-  User, 
-  Bell, 
-  Shield, 
-  Palette, 
+import React, { useState } from "react";
+import {
+  Settings as SettingsIcon,
+  User,
+  Bell,
+  Shield,
+  Palette,
   Globe,
   Database,
   Key,
   Save,
   Eye,
-  EyeOff
-} from 'lucide-react';
-import PageLayout from '../components/layout/PageLayout';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
-import { 
-  Form, 
-  FormField, 
-  FormInput, 
-  FormSelect, 
-  FormTextarea, 
-  FormCheckbox 
-} from '../components/ui/Form';
-import { useNotifications } from '../components/ui/Notifications';
+  EyeOff,
+} from "lucide-react";
+import PageLayout from "../components/layout/PageLayout";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import {
+  Form,
+  FormField,
+  FormInput,
+  FormSelect,
+  FormTextarea,
+  FormCheckbox,
+} from "../components/ui/Form";
+import { useNotifications } from "../components/ui/Notifications";
 
 const Settings = () => {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState("profile");
   const [showPassword, setShowPassword] = useState(false);
   const { success, error } = useNotifications();
 
   const tabs = [
-    { id: 'profile', label: 'Profile', icon: User },
-    { id: 'notifications', label: 'Notifications', icon: Bell },
-    { id: 'security', label: 'Security', icon: Shield },
-    { id: 'appearance', label: 'Appearance', icon: Palette },
-    { id: 'integrations', label: 'Integrations', icon: Database },
-    { id: 'api', label: 'API Keys', icon: Key }
+    { id: "profile", label: "Profile", icon: User },
+    { id: "notifications", label: "Notifications", icon: Bell },
+    { id: "security", label: "Security", icon: Shield },
+    { id: "appearance", label: "Appearance", icon: Palette },
+    { id: "integrations", label: "Integrations", icon: Database },
+    { id: "api", label: "API Keys", icon: Key },
   ];
 
   const breadcrumb = [
-    { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Settings' }
+    { label: "Dashboard", href: "/dashboard" },
+    { label: "Settings" },
   ];
 
   const handleProfileSubmit = async (data) => {
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      success('Profile updated successfully');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      success("Profile updated successfully");
     } catch (err) {
-      error('Failed to update profile');
+      error("Failed to update profile");
     }
   };
 
   const handleNotificationSubmit = async (data) => {
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      success('Notification preferences updated');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      success("Notification preferences updated");
     } catch (err) {
-      error('Failed to update notifications');
+      error("Failed to update notifications");
     }
   };
 
   const handleSecuritySubmit = async (data) => {
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      success('Security settings updated');
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      success("Security settings updated");
     } catch (err) {
-      error('Failed to update security settings');
+      error("Failed to update security settings");
     }
   };
 
   const profileValidation = {
-    firstName: { required: true, message: 'First name is required' },
-    lastName: { required: true, message: 'Last name is required' },
-    email: { 
-      required: true, 
+    firstName: { required: true, message: "First name is required" },
+    lastName: { required: true, message: "Last name is required" },
+    email: {
+      required: true,
       pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: 'Please enter a valid email address'
-    }
+      message: "Please enter a valid email address",
+    },
   };
 
   const securityValidation = {
-    currentPassword: { required: true, message: 'Current password is required' },
-    newPassword: { 
-      required: true, 
+    currentPassword: {
+      required: true,
+      message: "Current password is required",
+    },
+    newPassword: {
+      required: true,
       minLength: 8,
-      message: 'Password must be at least 8 characters'
+      message: "Password must be at least 8 characters",
     },
     confirmPassword: {
       required: true,
       validate: (value, values) => {
         if (value !== values.newPassword) {
-          return 'Passwords do not match';
+          return "Passwords do not match";
         }
-        return '';
-      }
-    }
+        return "";
+      },
+    },
   };
 
   const roleOptions = [
-    { value: 'admin', label: 'Administrator' },
-    { value: 'manager', label: 'Manager' },
-    { value: 'user', label: 'User' }
+    { value: "admin", label: "Administrator" },
+    { value: "manager", label: "Manager" },
+    { value: "user", label: "User" },
   ];
 
   const timezoneOptions = [
-    { value: 'UTC', label: 'UTC' },
-    { value: 'America/New_York', label: 'Eastern Time' },
-    { value: 'America/Chicago', label: 'Central Time' },
-    { value: 'America/Denver', label: 'Mountain Time' },
-    { value: 'America/Los_Angeles', label: 'Pacific Time' }
+    { value: "UTC", label: "UTC" },
+    { value: "America/New_York", label: "Eastern Time" },
+    { value: "America/Chicago", label: "Central Time" },
+    { value: "America/Denver", label: "Mountain Time" },
+    { value: "America/Los_Angeles", label: "Pacific Time" },
   ];
 
   const languageOptions = [
-    { value: 'en', label: 'English' },
-    { value: 'es', label: 'Spanish' },
-    { value: 'fr', label: 'French' },
-    { value: 'de', label: 'German' }
+    { value: "en", label: "English" },
+    { value: "es", label: "Spanish" },
+    { value: "fr", label: "French" },
+    { value: "de", label: "German" },
   ];
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'profile':
+      case "profile":
         return (
           <Form
             initialValues={{
-              firstName: 'John',
-              lastName: 'Doe',
-              email: 'john.doe@example.com',
-              phone: '+1 (555) 123-4567',
-              role: 'admin',
-              timezone: 'America/New_York',
-              language: 'en',
-              bio: 'Senior Software Engineer with 5+ years of experience.'
+              firstName: "John",
+              lastName: "Doe",
+              email: "john.doe@example.com",
+              phone: "+1 (555) 123-4567",
+              role: "admin",
+              timezone: "America/New_York",
+              language: "en",
+              bio: "Senior Software Engineer with 5+ years of experience.",
             }}
             validation={profileValidation}
             onSubmit={handleProfileSubmit}
@@ -149,11 +152,19 @@ const Settings = () => {
               </FormField>
 
               <FormField name="email" label="Email Address" required>
-                <FormInput name="email" type="email" placeholder="Enter email address" />
+                <FormInput
+                  name="email"
+                  type="email"
+                  placeholder="Enter email address"
+                />
               </FormField>
 
               <FormField name="phone" label="Phone Number">
-                <FormInput name="phone" type="tel" placeholder="Enter phone number" />
+                <FormInput
+                  name="phone"
+                  type="tel"
+                  placeholder="Enter phone number"
+                />
               </FormField>
 
               <FormField name="role" label="Role">
@@ -170,7 +181,11 @@ const Settings = () => {
             </div>
 
             <FormField name="bio" label="Bio">
-              <FormTextarea name="bio" rows={4} placeholder="Tell us about yourself" />
+              <FormTextarea
+                name="bio"
+                rows={4}
+                placeholder="Tell us about yourself"
+              />
             </FormField>
 
             <div className="flex justify-end">
@@ -182,7 +197,7 @@ const Settings = () => {
           </Form>
         );
 
-      case 'notifications':
+      case "notifications":
         return (
           <Form
             initialValues={{
@@ -191,24 +206,40 @@ const Settings = () => {
               smsNotifications: false,
               marketingEmails: true,
               securityAlerts: true,
-              productUpdates: false
+              productUpdates: false,
             }}
             onSubmit={handleNotificationSubmit}
           >
             <div className="space-y-6">
               <div>
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Communication Preferences</h4>
+                <h4 className="text-lg font-medium text-gray-900 mb-4">
+                  Communication Preferences
+                </h4>
                 <div className="space-y-4">
-                  <FormCheckbox name="emailNotifications" label="Email notifications" />
-                  <FormCheckbox name="pushNotifications" label="Push notifications" />
-                  <FormCheckbox name="smsNotifications" label="SMS notifications" />
+                  <FormCheckbox
+                    name="emailNotifications"
+                    label="Email notifications"
+                  />
+                  <FormCheckbox
+                    name="pushNotifications"
+                    label="Push notifications"
+                  />
+                  <FormCheckbox
+                    name="smsNotifications"
+                    label="SMS notifications"
+                  />
                 </div>
               </div>
 
               <div>
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Content Preferences</h4>
+                <h4 className="text-lg font-medium text-gray-900 mb-4">
+                  Content Preferences
+                </h4>
                 <div className="space-y-4">
-                  <FormCheckbox name="marketingEmails" label="Marketing emails" />
+                  <FormCheckbox
+                    name="marketingEmails"
+                    label="Marketing emails"
+                  />
                   <FormCheckbox name="securityAlerts" label="Security alerts" />
                   <FormCheckbox name="productUpdates" label="Product updates" />
                 </div>
@@ -224,7 +255,7 @@ const Settings = () => {
           </Form>
         );
 
-      case 'security':
+      case "security":
         return (
           <div className="space-y-8">
             <Form
@@ -232,37 +263,51 @@ const Settings = () => {
               validation={securityValidation}
               onSubmit={handleSecuritySubmit}
             >
-              <h4 className="text-lg font-medium text-gray-900 mb-4">Change Password</h4>
-              
-              <FormField name="currentPassword" label="Current Password" required>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">
+                Change Password
+              </h4>
+
+              <FormField
+                name="currentPassword"
+                label="Current Password"
+                required
+              >
                 <div className="relative">
-                  <FormInput 
-                    name="currentPassword" 
-                    type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter current password" 
+                  <FormInput
+                    name="currentPassword"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter current password"
                   />
                   <button
                     type="button"
                     className="absolute inset-y-0 right-0 pr-3 flex items-center"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </button>
                 </div>
               </FormField>
 
               <FormField name="newPassword" label="New Password" required>
-                <FormInput 
-                  name="newPassword" 
-                  type="password" 
+                <FormInput
+                  name="newPassword"
+                  type="password"
                   placeholder="Enter new password"
                 />
               </FormField>
 
-              <FormField name="confirmPassword" label="Confirm New Password" required>
-                <FormInput 
-                  name="confirmPassword" 
-                  type="password" 
+              <FormField
+                name="confirmPassword"
+                label="Confirm New Password"
+                required
+              >
+                <FormInput
+                  name="confirmPassword"
+                  type="password"
                   placeholder="Confirm new password"
                 />
               </FormField>
@@ -276,38 +321,47 @@ const Settings = () => {
             </Form>
 
             <div className="border-t pt-8">
-              <h4 className="text-lg font-medium text-gray-900 mb-4">Two-Factor Authentication</h4>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">
+                Two-Factor Authentication
+              </h4>
               <p className="text-gray-600 mb-4">
-                Add an extra layer of security to your account by enabling two-factor authentication.
+                Add an extra layer of security to your account by enabling
+                two-factor authentication.
               </p>
-              <Button variant="secondary">
-                Enable 2FA
-              </Button>
+              <Button variant="secondary">Enable 2FA</Button>
             </div>
 
             <div className="border-t pt-8">
-              <h4 className="text-lg font-medium text-gray-900 mb-4">Active Sessions</h4>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">
+                Active Sessions
+              </h4>
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                   <div>
                     <p className="font-medium">Current Session</p>
-                    <p className="text-sm text-gray-600">Chrome on macOS • San Francisco, CA</p>
+                    <p className="text-sm text-gray-600">
+                      Chrome on macOS • San Francisco, CA
+                    </p>
                   </div>
                   <Badge variant="success">Active</Badge>
                 </div>
                 <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
                   <div>
                     <p className="font-medium">Mobile Device</p>
-                    <p className="text-sm text-gray-600">Safari on iOS • Last seen 2 hours ago</p>
+                    <p className="text-sm text-gray-600">
+                      Safari on iOS • Last seen 2 hours ago
+                    </p>
                   </div>
-                  <Button variant="secondary" size="sm">Revoke</Button>
+                  <Button variant="secondary" size="sm">
+                    Revoke
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
         );
 
-      case 'appearance':
+      case "appearance":
         return (
           <div className="space-y-6">
             <div>
@@ -329,16 +383,20 @@ const Settings = () => {
             </div>
 
             <div>
-              <h4 className="text-lg font-medium text-gray-900 mb-4">Accent Color</h4>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">
+                Accent Color
+              </h4>
               <div className="flex space-x-3">
-                {['blue', 'purple', 'green', 'red', 'yellow', 'indigo'].map(color => (
-                  <button
-                    key={color}
-                    className={`w-8 h-8 rounded-full bg-${color}-500 hover:scale-110 transition-transform ${
-                      color === 'blue' ? 'ring-2 ring-blue-300' : ''
-                    }`}
-                  />
-                ))}
+                {["blue", "purple", "green", "red", "yellow", "indigo"].map(
+                  (color) => (
+                    <button
+                      key={color}
+                      className={`w-8 h-8 rounded-full bg-${color}-500 hover:scale-110 transition-transform ${
+                        color === "blue" ? "ring-2 ring-blue-300" : ""
+                      }`}
+                    />
+                  )
+                )}
               </div>
             </div>
 
@@ -351,26 +409,49 @@ const Settings = () => {
           </div>
         );
 
-      case 'integrations':
+      case "integrations":
         return (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                { name: 'Slack', description: 'Team communication', connected: true },
-                { name: 'Google Drive', description: 'File storage', connected: false },
-                { name: 'Zoom', description: 'Video conferencing', connected: true },
-                { name: 'GitHub', description: 'Code repository', connected: false }
+                {
+                  name: "Slack",
+                  description: "Team communication",
+                  connected: true,
+                },
+                {
+                  name: "Google Drive",
+                  description: "File storage",
+                  connected: false,
+                },
+                {
+                  name: "Zoom",
+                  description: "Video conferencing",
+                  connected: true,
+                },
+                {
+                  name: "GitHub",
+                  description: "Code repository",
+                  connected: false,
+                },
               ].map((integration, index) => (
                 <Card key={index} className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h4 className="font-medium">{integration.name}</h4>
-                    <Badge variant={integration.connected ? 'success' : 'default'}>
-                      {integration.connected ? 'Connected' : 'Disconnected'}
+                    <Badge
+                      variant={integration.connected ? "success" : "default"}
+                    >
+                      {integration.connected ? "Connected" : "Disconnected"}
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-4">{integration.description}</p>
-                  <Button variant={integration.connected ? 'secondary' : 'primary'} size="sm">
-                    {integration.connected ? 'Disconnect' : 'Connect'}
+                  <p className="text-gray-600 mb-4">
+                    {integration.description}
+                  </p>
+                  <Button
+                    variant={integration.connected ? "secondary" : "primary"}
+                    size="sm"
+                  >
+                    {integration.connected ? "Disconnect" : "Connect"}
                   </Button>
                 </Card>
               ))}
@@ -378,13 +459,15 @@ const Settings = () => {
           </div>
         );
 
-      case 'api':
+      case "api":
         return (
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <div>
                 <h4 className="text-lg font-medium text-gray-900">API Keys</h4>
-                <p className="text-gray-600">Manage your API keys for integrations</p>
+                <p className="text-gray-600">
+                  Manage your API keys for integrations
+                </p>
               </div>
               <Button>
                 <Key className="w-4 h-4 mr-2" />
@@ -394,8 +477,16 @@ const Settings = () => {
 
             <div className="space-y-4">
               {[
-                { name: 'Production API Key', created: '2024-01-15', lastUsed: '2024-01-15' },
-                { name: 'Development API Key', created: '2024-01-10', lastUsed: '2024-01-14' }
+                {
+                  name: "Production API Key",
+                  created: "2024-01-15",
+                  lastUsed: "2024-01-15",
+                },
+                {
+                  name: "Development API Key",
+                  created: "2024-01-10",
+                  lastUsed: "2024-01-14",
+                },
               ].map((key, index) => (
                 <Card key={index} className="p-4">
                   <div className="flex items-center justify-between">
@@ -406,8 +497,12 @@ const Settings = () => {
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Button variant="secondary" size="sm">Regenerate</Button>
-                      <Button variant="secondary" size="sm">Delete</Button>
+                      <Button variant="secondary" size="sm">
+                        Regenerate
+                      </Button>
+                      <Button variant="secondary" size="sm">
+                        Delete
+                      </Button>
                     </div>
                   </div>
                 </Card>
@@ -422,8 +517,8 @@ const Settings = () => {
   };
 
   return (
-    <PageLayout 
-      title="Settings" 
+    <PageLayout
+      title="Settings"
       description="Manage your account settings and preferences"
       breadcrumb={breadcrumb}
       backgroundColor="gradient"
@@ -441,9 +536,10 @@ const Settings = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`
                       w-full flex items-center px-3 py-2 text-left rounded-lg transition-colors
-                      ${activeTab === tab.id 
-                        ? 'bg-blue-100 text-blue-700' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                      ${
+                        activeTab === tab.id
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-gray-700 hover:bg-gray-100"
                       }
                     `}
                   >
@@ -458,9 +554,7 @@ const Settings = () => {
 
         {/* Main Content */}
         <div className="lg:col-span-3">
-          <Card className="p-6">
-            {renderTabContent()}
-          </Card>
+          <Card className="p-6">{renderTabContent()}</Card>
         </div>
       </div>
     </PageLayout>

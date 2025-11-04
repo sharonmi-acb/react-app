@@ -1,12 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Checkbox = ({ 
-  label, 
-  error, 
-  className = '',
-  id,
-  ...props 
-}) => {
+const Checkbox = ({ label, error, className = "", id, ...props }) => {
   return (
     <div className="space-y-1">
       <div className="flex items-center">
@@ -17,14 +11,15 @@ const Checkbox = ({
           {...props}
         />
         {label && (
-          <label htmlFor={id} className="ml-2 text-sm text-gray-700 cursor-pointer">
+          <label
+            htmlFor={id}
+            className="ml-2 text-sm text-gray-700 cursor-pointer"
+          >
             {label}
           </label>
         )}
       </div>
-      {error && (
-        <p className="text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -16,16 +16,27 @@ const Footer = () => {
               <span className="ml-2 text-xl font-bold">FlowTech</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Empowering businesses with cutting-edge SaaS solutions. We help companies streamline their operations and scale efficiently with our innovative technology platform.
+              Empowering businesses with cutting-edge SaaS solutions. We help
+              companies streamline their operations and scale efficiently with
+              our innovative technology platform.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+              >
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+              >
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+              >
                 <Github size={20} />
               </a>
             </div>
@@ -36,47 +47,74 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/features" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/features"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Features
                 </Link>
               </li>
               <li>
-                <Link to="/pricing" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/pricing"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Pricing
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/dashboard"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Dashboard
                 </Link>
               </li>
               <li>
-                <Link to="/analytics" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/analytics"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Analytics
                 </Link>
               </li>
               <li>
-                <Link to="/users" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/users"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   User Management
                 </Link>
               </li>
               <li>
-                <Link to="/settings" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/settings"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Settings
                 </Link>
               </li>
               <li>
-                <Link to="/support" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/support"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Support
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link
+                  to="/contact"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
                   Contact
                 </Link>
               </li>
@@ -110,13 +148,22 @@ const Footer = () => {
               © 2024 FlowTech. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
                 Terms of Service
               </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
                 Cookie Policy
               </a>
             </div>

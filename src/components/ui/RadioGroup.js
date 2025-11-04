@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const RadioGroup = ({ 
-  label, 
-  error, 
+const RadioGroup = ({
+  label,
+  error,
   options = [],
   name,
   value,
   onChange,
-  className = ''
+  className = "",
 }) => {
   return (
     <div className="space-y-3">
@@ -28,8 +28,8 @@ const RadioGroup = ({
               onChange={onChange}
               className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
             />
-            <label 
-              htmlFor={`${name}-${option.value}`} 
+            <label
+              htmlFor={`${name}-${option.value}`}
               className="ml-2 text-sm text-gray-700 cursor-pointer"
             >
               {option.label}
@@ -37,9 +37,7 @@ const RadioGroup = ({
           </div>
         ))}
       </div>
-      {error && (
-        <p className="text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
   );
 };

@@ -1,23 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const LoadingSpinner = ({ size = 'md', color = 'blue', className = '' }) => {
+const LoadingSpinner = ({ size = "md", color = "blue", className = "" }) => {
   const sizes = {
-    sm: 'w-4 h-4',
-    md: 'w-6 h-6',
-    lg: 'w-8 h-8',
-    xl: 'w-12 h-12'
+    sm: "w-4 h-4",
+    md: "w-6 h-6",
+    lg: "w-8 h-8",
+    xl: "w-12 h-12",
   };
 
   const colors = {
-    blue: 'text-blue-600',
-    purple: 'text-purple-600',
-    gray: 'text-gray-600',
-    white: 'text-white'
+    blue: "text-blue-600",
+    purple: "text-purple-600",
+    gray: "text-gray-600",
+    white: "text-white",
   };
 
   return (
-    <div className={`animate-spin ${sizes[size]} ${colors[color]} ${className}`}>
+    <div
+      className={`animate-spin ${sizes[size]} ${colors[color]} ${className}`}
+    >
       <svg fill="none" viewBox="0 0 24 24">
         <circle
           cx="12"
@@ -42,21 +44,19 @@ const LoadingButton = ({ children, loading, disabled, ...props }) => {
     <button
       {...props}
       disabled={disabled || loading}
-      className={`relative ${props.className || ''}`}
+      className={`relative ${props.className || ""}`}
     >
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center">
           <LoadingSpinner size="sm" color="white" />
         </div>
       )}
-      <span className={loading ? 'opacity-0' : ''}>
-        {children}
-      </span>
+      <span className={loading ? "opacity-0" : ""}>{children}</span>
     </button>
   );
 };
 
-const LoadingCard = ({ className = '' }) => (
+const LoadingCard = ({ className = "" }) => (
   <div className={`animate-pulse ${className}`}>
     <div className="bg-gray-200 rounded-lg p-6 space-y-4">
       <div className="h-4 bg-gray-300 rounded w-3/4"></div>
@@ -78,19 +78,19 @@ const LoadingPage = () => (
 );
 
 LoadingSpinner.propTypes = {
-  size: PropTypes.oneOf(['sm', 'md', 'lg', 'xl']),
-  color: PropTypes.oneOf(['blue', 'purple', 'gray', 'white']),
-  className: PropTypes.string
+  size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
+  color: PropTypes.oneOf(["blue", "purple", "gray", "white"]),
+  className: PropTypes.string,
 };
 
 LoadingButton.propTypes = {
   children: PropTypes.node.isRequired,
   loading: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 };
 
 LoadingCard.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export { LoadingSpinner, LoadingButton, LoadingCard, LoadingPage };

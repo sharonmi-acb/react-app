@@ -1,39 +1,40 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { 
-  MessageCircle, 
-  X, 
-  Send, 
-  Bot, 
-  User, 
+import React, { useState, useRef, useEffect } from "react";
+import {
+  MessageCircle,
+  X,
+  Send,
+  Bot,
+  User,
   Minimize2,
   Maximize2,
   Phone,
   Mail,
-  Clock
-} from 'lucide-react';
-import Button from '../ui/Button';
-import Input from '../ui/Input';
-import Badge from '../ui/Badge';
+  Clock,
+} from "lucide-react";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Badge from "../ui/Badge";
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([
     {
       id: 1,
-      type: 'bot',
-      content: 'Hi! I\'m here to help you with any questions about FlowTech. How can I assist you today?',
+      type: "bot",
+      content:
+        "Hi! I'm here to help you with any questions about FlowTech. How can I assist you today?",
       timestamp: new Date(),
-      sender: 'FlowBot'
-    }
+      sender: "FlowBot",
+    },
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const [onlineAgents, setOnlineAgents] = useState(3);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -41,11 +42,11 @@ const ChatWidget = () => {
   }, [messages]);
 
   const quickReplies = [
-    'How do I get started?',
-    'Pricing information',
-    'Technical support',
-    'Billing questions',
-    'Feature requests'
+    "How do I get started?",
+    "Pricing information",
+    "Technical support",
+    "Billing questions",
+    "Feature requests",
   ];
 
   const handleSendMessage = (text = message) => {
@@ -53,68 +54,88 @@ const ChatWidget = () => {
 
     const newMessage = {
       id: messages.length + 1,
-      type: 'user',
+      type: "user",
       content: text,
       timestamp: new Date(),
-      sender: 'You'
+      sender: "You",
     };
 
-    setMessages(prev => [...prev, newMessage]);
-    setMessage('');
+    setMessages((prev) => [...prev, newMessage]);
+    setMessage("");
     setIsTyping(true);
 
     // Simulate bot response
     setTimeout(() => {
       const botResponse = {
         id: messages.length + 2,
-        type: 'bot',
+        type: "bot",
         content: getBotResponse(text),
         timestamp: new Date(),
-        sender: 'FlowBot'
+        sender: "FlowBot",
       };
-      setMessages(prev => [...prev, botResponse]);
+      setMessages((prev) => [...prev, botResponse]);
       setIsTyping(false);
     }, 1000 + Math.random() * 2000);
   };
 
   const getBotResponse = (userMessage) => {
     const lowerMessage = userMessage.toLowerCase();
-    
-    if (lowerMessage.includes('pricing') || lowerMessage.includes('cost') || lowerMessage.includes('price')) {
-      return 'Our pricing starts at $29/month for the Starter plan. You can view all our plans and features on our pricing page. Would you like me to connect you with our sales team for a custom quote?';
+
+    if (
+      lowerMessage.includes("pricing") ||
+      lowerMessage.includes("cost") ||
+      lowerMessage.includes("price")
+    ) {
+      return "Our pricing starts at $29/month for the Starter plan. You can view all our plans and features on our pricing page. Would you like me to connect you with our sales team for a custom quote?";
     }
-    
-    if (lowerMessage.includes('started') || lowerMessage.includes('begin') || lowerMessage.includes('setup')) {
-      return 'Getting started is easy! First, create your account, then follow our onboarding guide. I can also connect you with a specialist who can walk you through the setup process. Would that be helpful?';
+
+    if (
+      lowerMessage.includes("started") ||
+      lowerMessage.includes("begin") ||
+      lowerMessage.includes("setup")
+    ) {
+      return "Getting started is easy! First, create your account, then follow our onboarding guide. I can also connect you with a specialist who can walk you through the setup process. Would that be helpful?";
     }
-    
-    if (lowerMessage.includes('technical') || lowerMessage.includes('bug') || lowerMessage.includes('error')) {
-      return 'I\'d be happy to help with technical issues. Can you describe the specific problem you\'re experiencing? For complex technical matters, I can also escalate you to our technical support team.';
+
+    if (
+      lowerMessage.includes("technical") ||
+      lowerMessage.includes("bug") ||
+      lowerMessage.includes("error")
+    ) {
+      return "I'd be happy to help with technical issues. Can you describe the specific problem you're experiencing? For complex technical matters, I can also escalate you to our technical support team.";
     }
-    
-    if (lowerMessage.includes('billing') || lowerMessage.includes('payment') || lowerMessage.includes('invoice')) {
-      return 'For billing questions, I can help you understand your charges, update payment methods, or explain your invoice. What specific billing question do you have?';
+
+    if (
+      lowerMessage.includes("billing") ||
+      lowerMessage.includes("payment") ||
+      lowerMessage.includes("invoice")
+    ) {
+      return "For billing questions, I can help you understand your charges, update payment methods, or explain your invoice. What specific billing question do you have?";
     }
-    
-    if (lowerMessage.includes('feature') || lowerMessage.includes('request') || lowerMessage.includes('suggestion')) {
-      return 'We love hearing feature suggestions from our users! I\'ll make sure your request gets to our product team. Can you tell me more about what feature you\'d like to see?';
+
+    if (
+      lowerMessage.includes("feature") ||
+      lowerMessage.includes("request") ||
+      lowerMessage.includes("suggestion")
+    ) {
+      return "We love hearing feature suggestions from our users! I'll make sure your request gets to our product team. Can you tell me more about what feature you'd like to see?";
     }
-    
-    return 'Thanks for your message! I\'m here to help with any questions about FlowTech. If you need to speak with a human agent, I can connect you right away. What would you like to know more about?';
+
+    return "Thanks for your message! I'm here to help with any questions about FlowTech. If you need to speak with a human agent, I can connect you right away. What would you like to know more about?";
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
 
   const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
-      minute: '2-digit',
-      hour12: true 
+    return date.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
     });
   };
 
@@ -141,9 +162,11 @@ const ChatWidget = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
-      <div className={`bg-white rounded-lg shadow-2xl border transition-all duration-200 ${
-        isMinimized ? 'w-80 h-16' : 'w-80 h-96'
-      }`}>
+      <div
+        className={`bg-white rounded-lg shadow-2xl border transition-all duration-200 ${
+          isMinimized ? "w-80 h-16" : "w-80 h-96"
+        }`}
+      >
         {/* Header */}
         <div className="bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -162,9 +185,13 @@ const ChatWidget = () => {
             <button
               onClick={() => setIsMinimized(!isMinimized)}
               className="text-white hover:bg-blue-700 p-1 rounded"
-              aria-label={isMinimized ? 'Maximize chat' : 'Minimize chat'}
+              aria-label={isMinimized ? "Maximize chat" : "Minimize chat"}
             >
-              {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
+              {isMinimized ? (
+                <Maximize2 className="w-4 h-4" />
+              ) : (
+                <Minimize2 className="w-4 h-4" />
+              )}
             </button>
             <button
               onClick={() => setIsOpen(false)}
@@ -181,30 +208,52 @@ const ChatWidget = () => {
             {/* Messages */}
             <div className="h-64 overflow-y-auto p-4 space-y-4">
               {messages.map((msg) => (
-                <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-xs ${msg.type === 'user' ? 'order-2' : 'order-1'}`}>
-                    <div className={`flex items-center gap-2 mb-1 ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center ${
-                        msg.type === 'user' ? 'bg-blue-100 order-2' : 'bg-gray-100 order-1'
-                      }`}>
-                        {msg.type === 'user' ? 
-                          <User className="w-3 h-3 text-blue-600" /> : 
+                <div
+                  key={msg.id}
+                  className={`flex ${
+                    msg.type === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-xs ${
+                      msg.type === "user" ? "order-2" : "order-1"
+                    }`}
+                  >
+                    <div
+                      className={`flex items-center gap-2 mb-1 ${
+                        msg.type === "user" ? "justify-end" : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center ${
+                          msg.type === "user"
+                            ? "bg-blue-100 order-2"
+                            : "bg-gray-100 order-1"
+                        }`}
+                      >
+                        {msg.type === "user" ? (
+                          <User className="w-3 h-3 text-blue-600" />
+                        ) : (
                           <Bot className="w-3 h-3 text-gray-600" />
-                        }
+                        )}
                       </div>
-                      <span className="text-xs text-gray-500">{formatTime(msg.timestamp)}</span>
+                      <span className="text-xs text-gray-500">
+                        {formatTime(msg.timestamp)}
+                      </span>
                     </div>
-                    <div className={`p-3 rounded-lg text-sm ${
-                      msg.type === 'user' 
-                        ? 'bg-blue-600 text-white rounded-br-none' 
-                        : 'bg-gray-100 text-gray-800 rounded-bl-none'
-                    }`}>
+                    <div
+                      className={`p-3 rounded-lg text-sm ${
+                        msg.type === "user"
+                          ? "bg-blue-600 text-white rounded-br-none"
+                          : "bg-gray-100 text-gray-800 rounded-bl-none"
+                      }`}
+                    >
                       {msg.content}
                     </div>
                   </div>
                 </div>
               ))}
-              
+
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="max-w-xs">
@@ -216,8 +265,14 @@ const ChatWidget = () => {
                     <div className="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-bl-none text-sm">
                       <div className="flex gap-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.1s" }}
+                        ></div>
+                        <div
+                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                          style={{ animationDelay: "0.2s" }}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -263,7 +318,7 @@ const ChatWidget = () => {
                   <Send className="w-4 h-4" />
                 </Button>
               </div>
-              
+
               {/* Contact Options */}
               <div className="flex justify-center gap-4 mt-3 pt-3 border-t">
                 <button className="flex items-center gap-1 text-xs text-gray-500 hover:text-blue-600">

@@ -1,24 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import ChatWidget from './components/ChatWidget';
-import NotificationProvider from './components/ui/Notifications';
-import Home from './pages/Home';
-import Features from './pages/Features';
-import Pricing from './pages/Pricing';
-import Dashboard from './pages/Dashboard';
-import Contact from './pages/Contact';
-import About from './pages/About/About';
-import Blog from './pages/Blog/Blog';
-import FAQ from './pages/FAQ/FAQ';
-import Careers from './pages/Careers/Careers';
-import Support from './pages/Support/Support';
-import Analytics from './pages/Analytics';
-import UserManagement from './pages/UserManagement';
-import Settings from './pages/Settings';
-import Reports from './pages/Reports';
-import Status from './pages/Status';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
+import NotificationProvider from "./components/ui/Notifications";
+import Home from "./pages/Home";
+import Features from "./pages/Features";
+import Pricing from "./pages/Pricing";
+import Dashboard from "./pages/Dashboard";
+import Contact from "./pages/Contact";
+import About from "./pages/About/About";
+import Blog from "./pages/Blog/Blog";
+import FAQ from "./pages/FAQ/FAQ";
+import Careers from "./pages/Careers/Careers";
+import Support from "./pages/Support/Support";
+import Analytics from "./pages/Analytics";
+import UserManagement from "./pages/UserManagement";
+import Settings from "./pages/Settings";
+import Reports from "./pages/Reports";
+import Status from "./pages/Status";
 
 function App() {
   return (

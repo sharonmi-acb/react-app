@@ -1,98 +1,107 @@
-import React, { useState } from 'react';
-import { Send, Upload, User, Mail, Phone, FileText } from 'lucide-react';
-import Card from '../../ui/Card';
-import Button from '../../ui/Button';
-import Input from '../../ui/Input';
-import Select from '../../ui/Select';
-import Textarea from '../../ui/Textarea';
-import FileUpload from '../../ui/FileUpload';
-import Checkbox from '../../ui/Checkbox';
+import React, { useState } from "react";
+import { Send, Upload, User, Mail, Phone, FileText } from "lucide-react";
+import Card from "../../ui/Card";
+import Button from "../../ui/Button";
+import Input from "../../ui/Input";
+import Select from "../../ui/Select";
+import Textarea from "../../ui/Textarea";
+import FileUpload from "../../ui/FileUpload";
+import Checkbox from "../../ui/Checkbox";
 
-const JobApplicationForm = ({ jobTitle = '', onSubmit, onCancel }) => {
+const JobApplicationForm = ({ jobTitle = "", onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
     position: jobTitle,
-    experience: '',
-    expectedSalary: '',
-    availability: '',
-    portfolio: '',
-    linkedin: '',
-    coverLetter: '',
+    experience: "",
+    expectedSalary: "",
+    availability: "",
+    portfolio: "",
+    linkedin: "",
+    coverLetter: "",
     agreeToTerms: false,
-    allowContact: true
+    allowContact: true,
   });
 
   const [files, setFiles] = useState({
     resume: null,
     coverLetterFile: null,
-    portfolio: null
+    portfolio: null,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const positions = [
-    { value: 'senior-fullstack-engineer', label: 'Senior Full Stack Engineer' },
-    { value: 'product-designer', label: 'Product Designer' },
-    { value: 'sales-development-representative', label: 'Sales Development Representative' },
-    { value: 'devops-engineer', label: 'DevOps Engineer' },
-    { value: 'customer-success-manager', label: 'Customer Success Manager' },
-    { value: 'marketing-manager', label: 'Marketing Manager' },
-    { value: 'other', label: 'Other Position' }
+    { value: "senior-fullstack-engineer", label: "Senior Full Stack Engineer" },
+    { value: "product-designer", label: "Product Designer" },
+    {
+      value: "sales-development-representative",
+      label: "Sales Development Representative",
+    },
+    { value: "devops-engineer", label: "DevOps Engineer" },
+    { value: "customer-success-manager", label: "Customer Success Manager" },
+    { value: "marketing-manager", label: "Marketing Manager" },
+    { value: "other", label: "Other Position" },
   ];
 
   const experienceLevels = [
-    { value: 'entry', label: 'Entry Level (0-2 years)' },
-    { value: 'mid', label: 'Mid Level (3-5 years)' },
-    { value: 'senior', label: 'Senior Level (6-10 years)' },
-    { value: 'lead', label: 'Lead/Principal (10+ years)' }
+    { value: "entry", label: "Entry Level (0-2 years)" },
+    { value: "mid", label: "Mid Level (3-5 years)" },
+    { value: "senior", label: "Senior Level (6-10 years)" },
+    { value: "lead", label: "Lead/Principal (10+ years)" },
   ];
 
   const availabilityOptions = [
-    { value: 'immediate', label: 'Immediately' },
-    { value: '2-weeks', label: 'Within 2 weeks' },
-    { value: '1-month', label: 'Within 1 month' },
-    { value: '2-months', label: 'Within 2 months' },
-    { value: 'negotiable', label: 'Negotiable' }
+    { value: "immediate", label: "Immediately" },
+    { value: "2-weeks", label: "Within 2 weeks" },
+    { value: "1-month", label: "Within 1 month" },
+    { value: "2-months", label: "Within 2 months" },
+    { value: "negotiable", label: "Negotiable" },
   ];
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handleFileChange = (field) => (uploadedFiles) => {
-    setFiles(prev => ({
+    setFiles((prev) => ({
       ...prev,
-      [field]: uploadedFiles[0] || null
+      [field]: uploadedFiles[0] || null,
     }));
   };
 
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.position) newErrors.position = 'Position is required';
-    if (!formData.experience) newErrors.experience = 'Experience level is required';
-    if (!formData.availability) newErrors.availability = 'Availability is required';
-    if (!formData.coverLetter.trim()) newErrors.coverLetter = 'Cover letter is required';
-    if (!formData.agreeToTerms) newErrors.agreeToTerms = 'You must agree to the terms';
-    if (!files.resume) newErrors.resume = 'Resume is required';
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
+    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email is invalid";
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.position) newErrors.position = "Position is required";
+    if (!formData.experience)
+      newErrors.experience = "Experience level is required";
+    if (!formData.availability)
+      newErrors.availability = "Availability is required";
+    if (!formData.coverLetter.trim())
+      newErrors.coverLetter = "Cover letter is required";
+    if (!formData.agreeToTerms)
+      newErrors.agreeToTerms = "You must agree to the terms";
+    if (!files.resume) newErrors.resume = "Resume is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -100,22 +109,22 @@ const JobApplicationForm = ({ jobTitle = '', onSubmit, onCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       if (onSubmit) {
         onSubmit({ formData, files });
       }
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error("Submission error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -124,9 +133,12 @@ const JobApplicationForm = ({ jobTitle = '', onSubmit, onCancel }) => {
   return (
     <Card padding="p-8" className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Job Application</h2>
+        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          Job Application
+        </h2>
         <p className="text-gray-600">
-          We're excited to learn more about you! Please fill out this application completely.
+          We're excited to learn more about you! Please fill out this
+          application completely.
         </p>
       </div>
 
@@ -257,20 +269,20 @@ const JobApplicationForm = ({ jobTitle = '', onSubmit, onCancel }) => {
             <FileUpload
               label="Resume"
               accept=".pdf,.doc,.docx"
-              onChange={handleFileChange('resume')}
+              onChange={handleFileChange("resume")}
               error={errors.resume}
               helperText="Please upload your resume in PDF or Word format (max 5MB)"
             />
             <FileUpload
               label="Cover Letter (Optional)"
               accept=".pdf,.doc,.docx"
-              onChange={handleFileChange('coverLetterFile')}
+              onChange={handleFileChange("coverLetterFile")}
               helperText="You can upload a cover letter file or write it below"
             />
             <FileUpload
               label="Portfolio/Work Samples (Optional)"
               accept=".pdf,.zip,.rar"
-              onChange={handleFileChange('portfolio')}
+              onChange={handleFileChange("portfolio")}
               helperText="Upload portfolio or work samples if applicable"
             />
           </div>
@@ -317,7 +329,7 @@ const JobApplicationForm = ({ jobTitle = '', onSubmit, onCancel }) => {
             icon={<Send className="w-4 h-4" />}
             className="flex-1"
           >
-            {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
+            {isSubmitting ? "Submitting Application..." : "Submit Application"}
           </Button>
           {onCancel && (
             <Button

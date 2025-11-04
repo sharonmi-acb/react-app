@@ -1,65 +1,81 @@
-import React from 'react';
-import { ArrowRight, Play, Star, CheckCircle, Users, TrendingUp, Shield, Zap } from 'lucide-react';
-import Button from '../components/ui/Button';
-import Card from '../components/ui/Card';
-import Badge from '../components/ui/Badge';
-import Section from '../components/Section';
-import TestimonialCard from '../components/TestimonialCard';
-import FeatureIcon from '../components/FeatureIcon';
+import React from "react";
+import {
+  ArrowRight,
+  Play,
+  Star,
+  CheckCircle,
+  Users,
+  TrendingUp,
+  Shield,
+  Zap,
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import Badge from "../components/ui/Badge";
+import Section from "../components/Section";
+import TestimonialCard from "../components/TestimonialCard";
+import FeatureIcon from "../components/FeatureIcon";
 
 const Home = () => {
   const features = [
     {
       icon: <Zap className="w-8 h-8 text-blue-500" />,
       title: "Lightning Fast",
-      description: "Optimize your workflow with our ultra-fast processing engine"
+      description:
+        "Optimize your workflow with our ultra-fast processing engine",
     },
     {
       icon: <Shield className="w-8 h-8 text-green-500" />,
       title: "Secure & Reliable",
-      description: "Enterprise-grade security with 99.9% uptime guarantee"
+      description: "Enterprise-grade security with 99.9% uptime guarantee",
     },
     {
       icon: <Users className="w-8 h-8 text-purple-500" />,
       title: "Team Collaboration",
-      description: "Seamless collaboration tools for distributed teams"
+      description: "Seamless collaboration tools for distributed teams",
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-orange-500" />,
       title: "Analytics & Insights",
-      description: "Real-time analytics to drive data-informed decisions"
-    }
+      description: "Real-time analytics to drive data-informed decisions",
+    },
   ];
 
   const testimonials = [
     {
       name: "Sarah Johnson",
       role: "CEO, TechStart",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
-      content: "FlowTech transformed our business operations. We've seen a 40% increase in productivity since implementation.",
-      rating: 5
+      image:
+        "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      content:
+        "FlowTech transformed our business operations. We've seen a 40% increase in productivity since implementation.",
+      rating: 5,
     },
     {
       name: "Michael Chen",
       role: "CTO, InnovateCorp",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
-      content: "The integration was seamless and the support team is exceptional. Highly recommended for any growing business.",
-      rating: 5
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
+      content:
+        "The integration was seamless and the support team is exceptional. Highly recommended for any growing business.",
+      rating: 5,
     },
     {
       name: "Emily Rodriguez",
       role: "Operations Manager, GrowthCo",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      content: "FlowTech's analytics dashboard gives us insights we never had before. It's been a game-changer for our decision making.",
-      rating: 5
-    }
+      image:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      content:
+        "FlowTech's analytics dashboard gives us insights we never had before. It's been a game-changer for our decision making.",
+      rating: 5,
+    },
   ];
 
   const stats = [
     { number: "10K+", label: "Active Users" },
     { number: "99.9%", label: "Uptime" },
     { number: "24/7", label: "Support" },
-    { number: "150+", label: "Countries" }
+    { number: "150+", label: "Countries" },
   ];
 
   return (
@@ -81,15 +97,21 @@ const Home = () => {
                   with FlowTech
                 </h1>
                 <p className="text-xl text-gray-600 max-w-lg">
-                  Streamline operations, boost productivity, and scale your business with our cutting-edge SaaS platform designed for modern enterprises.
+                  Streamline operations, boost productivity, and scale your
+                  business with our cutting-edge SaaS platform designed for
+                  modern enterprises.
                 </p>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" icon={<ArrowRight className="w-5 h-5" />}>
                   Get Started Free
                 </Button>
-                <Button variant="secondary" size="lg" icon={<Play className="w-5 h-5" />}>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  icon={<Play className="w-5 h-5" />}
+                >
                   Watch Demo
                 </Button>
               </div>
@@ -100,7 +122,9 @@ const Home = () => {
                     <img
                       key={i}
                       className="w-10 h-10 rounded-full border-2 border-white object-cover"
-                      src={`https://images.unsplash.com/photo-${1500000000000 + i * 1000000}?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80`}
+                      src={`https://images.unsplash.com/photo-${
+                        1500000000000 + i * 1000000
+                      }?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80`}
                       alt={`User ${i}`}
                     />
                   ))}
@@ -108,10 +132,15 @@ const Home = () => {
                 <div>
                   <div className="flex items-center space-x-1">
                     {[1, 2, 3, 4, 5].map((i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
-                  <p className="text-sm text-gray-600">Trusted by 10,000+ companies</p>
+                  <p className="text-sm text-gray-600">
+                    Trusted by 10,000+ companies
+                  </p>
                 </div>
               </div>
             </div>
@@ -189,7 +218,8 @@ const Home = () => {
             Ready to Transform Your Business?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of companies already using FlowTech to streamline their operations and boost productivity.
+            Join thousands of companies already using FlowTech to streamline
+            their operations and boost productivity.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" size="lg">

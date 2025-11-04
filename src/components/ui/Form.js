@@ -1,62 +1,74 @@
-import React, { createContext, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
-import { AlertCircle, Check } from 'lucide-react';
+import React, { createContext, useContext, useState } from "react";
+import PropTypes from "prop-types";
+import { AlertCircle, Check } from "lucide-react";
 
 const FormContext = createContext();
 
 export const useForm = () => {
   const context = useContext(FormContext);
   if (!context) {
-    throw new Error('useForm must be used within a Form component');
+    throw new Error("useForm must be used within a Form component");
   }
   return context;
 };
 
-const Form = ({ children, onSubmit, initialValues = {}, validation = {}, className = '' }) => {
+const Form = ({
+  children,
+  onSubmit,
+  initialValues = {},
+  validation = {},
+  className = "",
+}) => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [touched, setTouchedState] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const setValue = (name, value) => {
-    setValues(prev => ({ ...prev, [name]: value }));
-    
+    setValues((prev) => ({ ...prev, [name]: value }));
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const setTouched = (name) => {
-    setTouchedState(prev => ({ ...prev, [name]: true }));
+    setTouchedState((prev) => ({ ...prev, [name]: true }));
   };
 
   const validateField = (name, value) => {
     const fieldValidation = validation[name];
-    if (!fieldValidation) return '';
+    if (!fieldValidation) return "";
 
-    if (typeof fieldValidation === 'function') {
+    if (typeof fieldValidation === "function") {
       return fieldValidation(value, values);
     }
 
-    if (fieldValidation.required && (!value || value.toString().trim() === '')) {
+    if (
+      fieldValidation.required &&
+      (!value || value.toString().trim() === "")
+    ) {
       return fieldValidation.message || `${name} is required`;
     }
 
     if (fieldValidation.minLength && value.length < fieldValidation.minLength) {
-      return fieldValidation.message || `${name} must be at least ${fieldValidation.minLength} characters`;
+      return (
+        fieldValidation.message ||
+        `${name} must be at least ${fieldValidation.minLength} characters`
+      );
     }
 
     if (fieldValidation.pattern && !fieldValidation.pattern.test(value)) {
       return fieldValidation.message || `${name} format is invalid`;
     }
 
-    return '';
+    return "";
   };
 
   const validateForm = () => {
     const newErrors = {};
-    Object.keys(validation).forEach(name => {
+    Object.keys(validation).forEach((name) => {
       const error = validateField(name, values[name]);
       if (error) newErrors[name] = error;
     });
@@ -72,7 +84,7 @@ const Form = ({ children, onSubmit, initialValues = {}, validation = {}, classNa
       try {
         await onSubmit(values);
       } catch (error) {
-        console.error('Form submission error:', error);
+        console.error("Form submission error:", error);
       }
     }
 
@@ -86,7 +98,7 @@ const Form = ({ children, onSubmit, initialValues = {}, validation = {}, classNa
     isSubmitting,
     setValue,
     setTouched,
-    validateField
+    validateField,
   };
 
   return (
@@ -98,19 +110,29 @@ const Form = ({ children, onSubmit, initialValues = {}, validation = {}, classNa
   );
 };
 
-const FormField = ({ name, label, children, required = false, helpText, className = '' }) => {
+const FormField = ({
+  name,
+  label,
+  children,
+  required = false,
+  helpText,
+  className = "",
+}) => {
   const { errors, touched } = useForm();
   const hasError = touched[name] && errors[name];
 
   return (
     <div className={`space-y-1 ${className}`}>
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor={name}
+          className="block text-sm font-medium text-gray-700"
+        >
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      
+
       <div className="relative">
         {React.cloneElement(children, { name, id: name })}
         {hasError && (
@@ -134,15 +156,16 @@ const FormField = ({ name, label, children, required = false, helpText, classNam
   );
 };
 
-const FormInput = ({ 
-  name, 
-  type = 'text', 
-  placeholder, 
-  disabled = false, 
-  className = '',
-  ...props 
+const FormInput = ({
+  name,
+  type = "text",
+  placeholder,
+  disabled = false,
+  className = "",
+  ...props
 }) => {
-  const { values, setValue, setTouched, validateField, errors, touched } = useForm();
+  const { values, setValue, setTouched, validateField, errors, touched } =
+    useForm();
   const hasError = touched[name] && errors[name];
 
   const handleChange = (e) => {
@@ -158,7 +181,7 @@ const FormInput = ({
     <input
       type={type}
       name={name}
-      value={values[name] || ''}
+      value={values[name] || ""}
       onChange={handleChange}
       onBlur={handleBlur}
       placeholder={placeholder}
@@ -167,7 +190,7 @@ const FormInput = ({
         w-full px-3 py-2 border rounded-lg shadow-sm placeholder-gray-400
         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
         disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
-        ${hasError ? 'border-red-300 focus:ring-red-500' : 'border-gray-300'}
+        ${hasError ? "border-red-300 focus:ring-red-500" : "border-gray-300"}
         ${className}
       `}
       {...props}
@@ -175,15 +198,16 @@ const FormInput = ({
   );
 };
 
-const FormTextarea = ({ 
-  name, 
-  placeholder, 
-  rows = 3, 
-  disabled = false, 
-  className = '',
-  ...props 
+const FormTextarea = ({
+  name,
+  placeholder,
+  rows = 3,
+  disabled = false,
+  className = "",
+  ...props
 }) => {
-  const { values, setValue, setTouched, validateField, errors, touched } = useForm();
+  const { values, setValue, setTouched, validateField, errors, touched } =
+    useForm();
   const hasError = touched[name] && errors[name];
 
   const handleChange = (e) => {
@@ -198,7 +222,7 @@ const FormTextarea = ({
   return (
     <textarea
       name={name}
-      value={values[name] || ''}
+      value={values[name] || ""}
       onChange={handleChange}
       onBlur={handleBlur}
       placeholder={placeholder}
@@ -208,7 +232,7 @@ const FormTextarea = ({
         w-full px-3 py-2 border rounded-lg shadow-sm placeholder-gray-400 resize-vertical
         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
         disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
-        ${hasError ? 'border-red-300 focus:ring-red-500' : 'border-gray-300'}
+        ${hasError ? "border-red-300 focus:ring-red-500" : "border-gray-300"}
         ${className}
       `}
       {...props}
@@ -216,15 +240,16 @@ const FormTextarea = ({
   );
 };
 
-const FormSelect = ({ 
-  name, 
-  options = [], 
-  placeholder = 'Select an option', 
-  disabled = false, 
-  className = '',
-  ...props 
+const FormSelect = ({
+  name,
+  options = [],
+  placeholder = "Select an option",
+  disabled = false,
+  className = "",
+  ...props
 }) => {
-  const { values, setValue, setTouched, validateField, errors, touched } = useForm();
+  const { values, setValue, setTouched, validateField, errors, touched } =
+    useForm();
   const hasError = touched[name] && errors[name];
 
   const handleChange = (e) => {
@@ -239,7 +264,7 @@ const FormSelect = ({
   return (
     <select
       name={name}
-      value={values[name] || ''}
+      value={values[name] || ""}
       onChange={handleChange}
       onBlur={handleBlur}
       disabled={disabled}
@@ -247,7 +272,7 @@ const FormSelect = ({
         w-full px-3 py-2 border rounded-lg shadow-sm
         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
         disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
-        ${hasError ? 'border-red-300 focus:ring-red-500' : 'border-gray-300'}
+        ${hasError ? "border-red-300 focus:ring-red-500" : "border-gray-300"}
         ${className}
       `}
       {...props}
@@ -262,7 +287,7 @@ const FormSelect = ({
   );
 };
 
-const FormCheckbox = ({ name, label, disabled = false, className = '' }) => {
+const FormCheckbox = ({ name, label, disabled = false, className = "" }) => {
   const { values, setValue } = useForm();
 
   const handleChange = (e) => {
@@ -294,7 +319,7 @@ Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   initialValues: PropTypes.object,
   validation: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FormField.propTypes = {
@@ -303,7 +328,7 @@ FormField.propTypes = {
   children: PropTypes.node.isRequired,
   required: PropTypes.bool,
   helpText: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FormInput.propTypes = {
@@ -311,7 +336,7 @@ FormInput.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FormTextarea.propTypes = {
@@ -319,25 +344,27 @@ FormTextarea.propTypes = {
   placeholder: PropTypes.string,
   rows: PropTypes.number,
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FormSelect.propTypes = {
   name: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ),
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 FormCheckbox.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export { Form, FormField, FormInput, FormTextarea, FormSelect, FormCheckbox };

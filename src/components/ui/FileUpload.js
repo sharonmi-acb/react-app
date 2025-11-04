@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const FileUpload = ({ 
-  label, 
-  error, 
+const FileUpload = ({
+  label,
+  error,
   helperText,
   accept,
   multiple = false,
-  className = '',
+  className = "",
   onChange,
-  ...props 
+  ...props
 }) => {
   const handleChange = (e) => {
     if (onChange) {
@@ -41,9 +41,7 @@ const FileUpload = ({
           {...props}
         />
       </div>
-      {error && (
-        <p className="text-sm text-red-600">{error}</p>
-      )}
+      {error && <p className="text-sm text-red-600">{error}</p>}
       {helperText && !error && (
         <p className="text-sm text-gray-500">{helperText}</p>
       )}
