@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Send, Upload, User, Mail, Phone, FileText } from "lucide-react";
-import Card from "../../ui/Card";
-import Button from "../../ui/Button";
-import Input from "../../ui/Input";
-import Select from "../../ui/Select";
-import Textarea from "../../ui/Textarea";
-import FileUpload from "../../ui/FileUpload";
-import Checkbox from "../../ui/Checkbox";
+import Card from "../ui/Card";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import Select from "../ui/Select";
+import Textarea from "../ui/Textarea";
+import FileUpload from "../ui/FileUpload";
+import Checkbox from "../ui/Checkbox";
 
 const JobApplicationForm = ({ jobTitle = "", onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
