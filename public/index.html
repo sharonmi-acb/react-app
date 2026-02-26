@@ -17,5 +17,14 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script>
+      (function () {
+        var s = document.createElement('script');
+        var h = document.querySelector('head') || document.body;
+        s.src = 'https://acsbapp.com/app-flow.js';
+        s.async = true;
+        h.appendChild(s);
+      }());
+    </script>
   </body>
 </html>
